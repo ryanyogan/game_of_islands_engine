@@ -4,10 +4,6 @@ defmodule IslandsEngine.Island do
   @enforce_keys [:coordinates, :hit_coordinates]
   defstruct [:coordinates, :hit_coordinates]
 
-  @type t(coordinates, hit_coordinates) ::
-          %Island{coordinates: coordinates, hit_coordinates: hit_coordinates}
-
-  @spec new(any, Coordinate.t()) :: Island.t(MapSet.t(any), MapSet.t(any))
   def new(type, %Coordinate{} = upper_left) do
     with [_ | _] = offsets <- offsets(type),
          %MapSet{} = coordinates <- add_coordinates(offsets, upper_left),
